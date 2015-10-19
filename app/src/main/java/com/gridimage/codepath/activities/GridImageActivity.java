@@ -72,6 +72,7 @@ public class GridImageActivity extends AppCompatActivity {
             searchOpts = new SearchOpts();
         }
         searchOpts.startRow = page*8;
+        Log.d("DEBUG", "Scroll - Fetching with startRow = " + searchOpts.startRow);
         fetchData();
     }
 
@@ -89,7 +90,8 @@ public class GridImageActivity extends AppCompatActivity {
                 if (searchOpts != null)
                     searchOpts.startRow = 0;
                 // perform query here
-                imageResults.clear();
+                aImageResults.clear();
+                Log.d("DEBUG", "Query - Fetching with query = " + query);
                 fetchData();
                 searchView.setIconified(true);
                 return true;
@@ -150,5 +152,8 @@ public class GridImageActivity extends AppCompatActivity {
             searchOpts = (SearchOpts) data.getSerializableExtra("searchOpts");
         }
         super.onActivityResult(requestCode, resultCode, data);
+        aImageResults.clear();
+        Log.d("DEBUG", "ActivityResult - Fetching with startRow = " + searchOpts.startRow);
+        fetchData();
     }
 }
